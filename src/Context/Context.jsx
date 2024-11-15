@@ -12,19 +12,24 @@ const ContextProvider = (props) =>{
     const [loading, setLoading] = useState(false);
     const [resultData, setResultData] = useState("");
 
-    // const onSent = async(prompt) =>{
-    //     await run(prompt)
-    // }
+    const onSent = async(prompt) =>{
 
-    const onSent = async (prompt) => {
-        try {
-            const response = await run(input);
-            console.log('Response from run:', response);
+        setResultData("")
+        setLoading(true)
+        setShowResult(true)
+        await run(input)
+    }
+
+    // const onSent = async (prompt) => {
+    //     try {
+    //         const response = await run(input);
+    //         // console.log('Response from run:', response);
+    //         // console.log(prompt);
             
-        } catch (error) {
-            console.error('Error in onSent:', error);
-        }
-    };
+    //     } catch (error) {
+    //         console.error('Error in onSent:', error);
+    //     }
+    // };
 
 
     const contextValue = {
