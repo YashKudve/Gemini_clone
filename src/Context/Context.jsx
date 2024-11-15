@@ -1,9 +1,16 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import run from "../config/gemini";
 
 export const Context = createContext();
 
 const ContextProvider = (props) =>{
+
+    const [input, setInput] = useState("");
+    const [recentPrompt, setRecentPrompt] = useState("");
+    const [prevPrompts, setPrevPrompts] = useState([]);
+    const [showResult, setShowResult] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [resultData, setResultData] = useState("");
 
     // const onSent = async(prompt) =>{
     //     await run(prompt)
@@ -11,18 +18,26 @@ const ContextProvider = (props) =>{
 
     const onSent = async (prompt) => {
         try {
-            const response = await run(prompt);
+            const response = await run(input);
             console.log('Response from run:', response);
-            // Process response as needed
+            
         } catch (error) {
             console.error('Error in onSent:', error);
         }
     };
 
-    onSent("What is React JS")
 
     const contextValue = {
-        someData: 'Hello, world!'
+        prevPrompts,
+        setPrevPrompts,
+        onSent,
+        setRecentPrompt,
+        recentPrompt,
+        showResult,
+        loading,
+        resultData,
+        input,
+        setInput
     }
 
     return(
