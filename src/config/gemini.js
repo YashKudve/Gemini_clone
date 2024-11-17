@@ -19,37 +19,38 @@ import {
     responseMimeType: "text/plain",
   };
   
-  // async function run(prompt) {
-  //   const chatSession = model.startChat({
-  //     generationConfig,
-  //     history: [
-  //     ],
-  //   });
-  
-  //   const result = await chatSession.sendMessage(prompt);
-  //   console.log(result.response.text());
-  // }
-
   async function run(prompt) {
     const chatSession = model.startChat({
-        generationConfig,
-        history: [],
+      generationConfig,
+      history: [
+      ],
     });
+  
+    const result = await chatSession.sendMessage(prompt);
+    console.log(result.response.text());
+    return result.response.text()
+  }
 
-    try {
-        const result = await chatSession.sendMessage(prompt);
+//   async function run(prompt) {
+//     const chatSession = model.startChat({
+//         generationConfig,
+//         history: [],
+//     });
 
-        if (result && result.response && typeof result.response.text === 'function') {
-            console.log(await result.response.text());
-        } else if (result && result.response && result.response.text) {
-            console.log(result.response.text);
-        } else {
-            console.log('Unexpected response structure:', result);
-        }
-    } catch (error) {
-        console.error('Error in run function:', error);
-    }
-}
+//     try {
+//         const result = await chatSession.sendMessage(prompt);
+
+//         if (result && result.response && typeof result.response.text === 'function') {
+//             console.log(await result.response.text());
+//         } else if (result && result.response && result.response.text) {
+//             console.log(result.response.text);
+//         } else {
+//             console.log('Unexpected response structure:', result);
+//         }
+//     } catch (error) {
+//         console.error('Error in run function:', error);
+//     }
+// }
 
   
   export default run;
