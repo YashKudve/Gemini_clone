@@ -37,7 +37,8 @@ const Sidebar = () => {
             return (
               <div className="recent-entry" onClick={()=>loadPrompt(item)}>
             <img src={assets.message_icon} alt="message_icon" />
-            <p>{item.slice(0,18)}...</p>
+            <p>{item.charAt(0).toUpperCase() + item.slice(1, 18)}{item.length > 18 ? '...' : ''}</p>
+          
         </div>
             )
           })}
